@@ -1,6 +1,13 @@
 #!/bin/sh
 
-docker login && \
-docker build . -t telethon-rpi --no-cache && \
-docker tag telethon-rpi jsmsalt/telethon-rpi:latest && \
-docker push jsmsalt/telethon-rpi:latest
+DOCKERHUB_USERNAME=jsmsalt
+IMAGE_NAME=telethon-rpi
+IMAGE_TAG=latest
+
+if [ "$1" = "push" ]; then
+	docker login && \
+	docker push "$DOCKERHUB_USERNAME/$IMAGE_NAME:$IMAGE_TAG"
+else
+	docker build . -t "$IMAGE_NAME" && \
+	docker tag "$IMAGE_NAME" "$DOCKERHUB_USERNAME/$IMAGE_NAME:$IMAGE_TAG"
+fi
