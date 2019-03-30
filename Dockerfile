@@ -25,7 +25,7 @@ RUN echo "********** [INSTALL DEPENDENCIES] **********" \
 	\
 	&& echo "********** [CLEAN UP] **********" \
 	&& apk del build-dependencies \
-	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -rf \
 		/tmp/* \
 		/var/tmp/* \
 		/var/cache/apk/* \
